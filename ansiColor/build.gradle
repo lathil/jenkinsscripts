@@ -1,0 +1,23 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'idea'
+}
+
+group 'lthil.sodifrance.fr'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url 'http://repo.jenkins-ci.org/releases/'}
+    maven { url 'https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/'}
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.15'
+    compile 'org.jenkins-ci.main:jenkins-core:2.32.2'
+    compile group: 'org.jenkins-ci.plugins', name: 'ansicolor', version:'0.5.2', ext:'jar'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

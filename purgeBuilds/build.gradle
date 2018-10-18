@@ -1,0 +1,23 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'idea'
+}
+
+group 'lthil.sodifrance.fr'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.15'
+    compile 'org.jenkins-ci.main:jenkins-core:2.32.2'
+}

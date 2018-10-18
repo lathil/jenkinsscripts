@@ -1,0 +1,11 @@
+rootProject.name = 'jenkinsscripts'
+include 'cleanworkspace'
+include 'templatesocle'
+include 'groovyscripts'
+include 'emailpluginfilter'
+include 'ansiColor'
+include 'xldimportworkflow'
+include 'devopsprojectsstats'
+include 'purgeBuilds'
+include 'migrationAuthorisations'
+
