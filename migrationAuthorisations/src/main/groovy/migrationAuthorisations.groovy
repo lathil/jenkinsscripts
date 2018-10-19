@@ -165,7 +165,7 @@ if (strategy != null && strategy instanceof RoleBasedAuthorizationStrategy) {
 
     // anonymous should have accès to read globaly
     def globalReaderRole = checkGlobalRole(strategy, 'globalReader', globalReadPermissionSet)
-    strategy.assignRole(RoleBasedAuthorizationStrategy.GLOBAL, globalReaderRole, 'anonymous')
+    strategy.assignRole(RoleBasedAuthorizationStrategy.GLOBAL, globalReaderRole, 'authenticated')
 
     Jenkins.get().getItems(AbstractItem).each { item ->
         // check that name matches trigram pattern
