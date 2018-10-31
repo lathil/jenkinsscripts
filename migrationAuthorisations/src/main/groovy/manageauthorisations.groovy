@@ -5,18 +5,8 @@ import hudson.security.AuthorizationStrategy
 import jenkins.model.Jenkins
 
 
-def unassignSid( String trigram) {
-    String adGroupAdvUser = "PGG_APPLI_DEVOPS_DEV_${trigram.toUpperCase()}_ADVANCED_USER"
-    String adGroupUser = "PGG_APPLI_DEVOPS_DEV_${trigram.toUpperCase()}_USER"
-    String adGroupConsult = "PGG_APPLI_DEVOPS_DEV_${trigram.toUpperCase()}_CONSULTATION"
+def unassignSidFromProject( String trigram) {
 
-    String cdsSodifranceGrouAD = "CDS_IDD_SODIFRANCE"
-    String groupEDV ="EDV"
-    String groupMFI =  "MFI"
-    String groupPGGTeam = "PGG_Team_STR"
-    String groupTmealse = "TMEALARE"
-    String groupeTmeLare = "TMEALARE"
-    String groupeVTedongm = "VTEDONGM"
 
     AuthorizationStrategy strategy = Jenkins.get().getAuthorizationStrategy()
     if (strategy != null && strategy instanceof RoleBasedAuthorizationStrategy) {
@@ -26,55 +16,79 @@ def unassignSid( String trigram) {
         Set<String> sidsConsult = rolesMap.getSidsForRole(trigram + "-consult")
         def sidsUser = rolesMap.getSidsForRole(trigram + "-user")
         def sidsAdvUser = rolesMap.getSidsForRole(trigram + "-advuser")
-        println( "Sids for ${trigram}: " + sidsConsult + ", " + sidsUser + ", " + sidsAdvUser)
+        println("Sids for ${trigram}: " + sidsConsult + ", " + sidsUser + ", " + sidsAdvUser)
 
-        // clear sid from consult role
-        List<String> sidToUnassign = new ArrayList<>();
-        for( String sid : sidsConsult){
-            if( !sid.equals(adGroupConsult)) {
-                sidToUnassign.add(sid)
-            }
+        def consultMap = rolesMap.getRole(trigram + "-consult")
+        if (consultMap != null) {
+            rolesMap.clearSidsForRole(consultMap)
         }
-        for( String sid : sidToUnassign){
-            println("remove user ${sid} from role consult")
-            rolesMap.unAssignRole(rolesMap.getRole(trigram + "-consult"), sid)
+        def userMap = rolesMap.getRole(trigram + "-user")
+        if (userMap != null) {
+            rolesMap.clearSidsForRole(userMap)
         }
-
-        // clear sid from user role
-        sidToUnassign = new ArrayList<>();
-        for( String sid : sidsUser){
-            if( !sid.equals(adGroupUser)) {
-                sidToUnassign.add(sid)
-            }
-        }
-        for( String sid : sidToUnassign){
-            println("remove user ${sid} from role user")
-            rolesMap.unAssignRole(rolesMap.getRole(trigram + "-user"), sid)
+        def advmap = rolesMap.getRole(trigram + "-advuser")
+        if( advmap != null) {
+            rolesMap.clearSidsForRole(advmap)
         }
 
-        rolesMap.clearSidsForRole(rolesMap.getRole(trigram + "-user"))
+        Jenkins.get().save()
+    }
+}
+def unassignSidFromView( String trigram) {
 
-        // clear sid from advance user role
-        //sidToUnassign = new ArrayList<>();
-        //for( String sid : sidsAdvUser){
-        //    if( !sid.equals(adGroupAdvUser)) {
-        //        sidToUnassign.add(sid)
-        //    }
-        //}
-        //for( String sid : sidToUnassign){
-        //    println("remove user ${sid} from role advuser")
-        //    rolesMap.unAssignRole(rolesMap.getRole(trigram + "-advuser"), sid)
-        //}
+    AuthorizationStrategy strategy = Jenkins.get().getAuthorizationStrategy()
+    if (strategy != null && strategy instanceof RoleBasedAuthorizationStrategy) {
+
+        RoleMap rolesMap = strategy.getGrantedRoles(RoleBasedAuthorizationStrategy.VIEW)
+
+        def consultMap = rolesMap.getRole(trigram )
+        if (consultMap != null) {
+            rolesMap.clearSidsForRole(consultMap)
+        }
 
         Jenkins.get().save()
     }
 }
 
-unassignSid("ado")
-unassignSid("evp")
-unassignSid("evb")
-unassignSid("mab")
-unassignSid("dvo")
+unassignSidFromProject("ado")
+unassignSidFromProject("evp")
+unassignSidFromProject("evb")
+unassignSidFromProject("mab")
+unassignSidFromProject("dvo")
+
+unassignSidFromProject("apc")
+unassignSidFromProject("ctr")
+unassignSidFromProject("dpo")
+unassignSidFromProject("gde")
+unassignSidFromProject("gtv")
+unassignSidFromProject("idn")
+unassignSidFromProject("idr")
+unassignSidFromProject("ins")
+unassignSidFromProject("mc2")
+
+unassignSidFromProject("rcu")
+unassignSidFromProject("spa")
+unassignSidFromProject("eit")
+
+unassignSidFromView("ado")
+unassignSidFromView("evp")
+unassignSidFromView("evb")
+unassignSidFromView("mab")
+unassignSidFromView("dvo")
+
+unassignSidFromView("apc")
+unassignSidFromView("ctr")
+unassignSidFromView("dpo")
+unassignSidFromView("gde")
+unassignSidFromView("gtv")
+unassignSidFromView("idn")
+unassignSidFromView("idr")
+unassignSidFromView("ins")
+unassignSidFromView("mc2")
+
+unassignSidFromView("rcu")
+unassignSidFromView("spa")
+unassignSidFromView("eit")
 
 
 

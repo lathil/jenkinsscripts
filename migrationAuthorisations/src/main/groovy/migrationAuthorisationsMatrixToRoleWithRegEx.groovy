@@ -268,20 +268,20 @@ if (strategy != null && strategy instanceof RoleBasedAuthorizationStrategy) {
     def globalReaderRole = checkGlobalRole(strategy, 'globalReader', globalReadPermissionSet)
     strategy.assignRole(RoleBasedAuthorizationStrategy.GLOBAL, globalReaderRole, 'authenticated')
 
-    def roleuser = checkRegexProjectRole(strategy, "PGG_APPLI_DEVOPS_DEV_USER", userPermissionSet)
-    def roleadv = checkRegexProjectRole(strategy, "PGG_APPLI_DEVOPS_DEV_ADVANCED_USER", advuserPermissionSet)
-    def roleconsult = checkRegexProjectRole(strategy, "PGG_APPLI_DEVOPS_DEV_ADVANCED_CONSULTATION", consultPermissionSet)
-    def roleviewaccess = checkRegExViewRole(strategy, "PGG_APPLI_DEVOPS_DEV_VIEWER", viewPermissionSet)
+    def roleuser = checkRegexProjectRole(strategy, "PGG_APPLI_TRIGRAM_DEV_USER", userPermissionSet)
+    def roleadv = checkRegexProjectRole(strategy, "PGG_APPLI_TRIGRAM_DEV_ADVANCED_USER", advuserPermissionSet)
+    def roleconsult = checkRegexProjectRole(strategy, "PGG_APPLI_TRIGRAM_DEV_ADVANCED_CONSULTATION", consultPermissionSet)
+    def roleviewaccess = checkRegExViewRole(strategy, "PGG_APPLI_TRIGRAM_DEV_VIEWER", viewPermissionSet)
 
-    strategy.assignRole(RoleBasedAuthorizationStrategy.PROJECT, roleadv, "^PGG_APPLI_DEVOPS_DEV_([a-zA-Z0-9]{3})_ADMIN")
-    strategy.assignRole(RoleBasedAuthorizationStrategy.PROJECT, roleadv, "^PGG_APPLI_DEVOPS_DEV_([a-zA-Z0-9]{3})_ADVANCED_USER")
-    strategy.assignRole(RoleBasedAuthorizationStrategy.PROJECT, roleuser, "^PGG_APPLI_DEVOPS_DEV_([a-zA-Z0-9]{3})_USER")
-    strategy.assignRole(RoleBasedAuthorizationStrategy.PROJECT, roleconsult, "^PGG_APPLI_DEVOPS_DEV_([a-zA-Z0-9]{3})_CONSULTATION")
+    strategy.assignRole(RoleBasedAuthorizationStrategy.PROJECT, roleadv, "^PGG_APPLI_TRIGRAM_DEV_([a-zA-Z0-9]{3})_ADMIN")
+    strategy.assignRole(RoleBasedAuthorizationStrategy.PROJECT, roleadv, "^PGG_APPLI_TRIGRAM_DEV_([a-zA-Z0-9]{3})_ADVANCED_USER")
+    strategy.assignRole(RoleBasedAuthorizationStrategy.PROJECT, roleuser, "^PGG_APPLI_TRIGRAM_DEV_([a-zA-Z0-9]{3})_USER")
+    strategy.assignRole(RoleBasedAuthorizationStrategy.PROJECT, roleconsult, "^PGG_APPLI_TRIGRAM_DEV_([a-zA-Z0-9]{3})_CONSULTATION")
 
-    strategy.assignRole(RoleBasedAuthorizationStrategy.VIEW, roleviewaccess, "^PGG_APPLI_DEVOPS_DEV_([a-zA-Z0-9]{3})_ADMIN")
-    strategy.assignRole(RoleBasedAuthorizationStrategy.VIEW, roleviewaccess, "^PGG_APPLI_DEVOPS_DEV_([a-zA-Z0-9]{3})_ADVANCED_USER")
-    strategy.assignRole(RoleBasedAuthorizationStrategy.VIEW, roleviewaccess, "^PGG_APPLI_DEVOPS_DEV_([a-zA-Z0-9]{3})_USER")
-    strategy.assignRole(RoleBasedAuthorizationStrategy.VIEW, roleviewaccess, "^PGG_APPLI_DEVOPS_DEV_([a-zA-Z0-9]{3})_CONSULTATION")
+    strategy.assignRole(RoleBasedAuthorizationStrategy.VIEW, roleviewaccess, "^PGG_APPLI_TRIGRAM_DEV_([a-zA-Z0-9]{3})_ADMIN")
+    strategy.assignRole(RoleBasedAuthorizationStrategy.VIEW, roleviewaccess, "^PGG_APPLI_TRIGRAM_DEV_([a-zA-Z0-9]{3})_ADVANCED_USER")
+    strategy.assignRole(RoleBasedAuthorizationStrategy.VIEW, roleviewaccess, "^PGG_APPLI_TRIGRAM_DEV_([a-zA-Z0-9]{3})_USER")
+    strategy.assignRole(RoleBasedAuthorizationStrategy.VIEW, roleviewaccess, "^PGG_APPLI_TRIGRAM_DEV_([a-zA-Z0-9]{3})_CONSULTATION")
 
 
     Jenkins.get().getItems(AbstractItem).each { item ->
