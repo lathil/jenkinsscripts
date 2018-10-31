@@ -21,7 +21,7 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.15'
     compile 'org.jenkins-ci.main:jenkins-core:2.121.2'
     compile group: 'org.jenkins-ci.plugins', name: 'matrix-auth', version:'1.7', ext:'jar'
-    compile group: 'org.jenkins-ci.plugins', name: 'role-strategy', version:'2.9.0', ext:'jar'
+    compile group: 'org.jenkins-ci.plugins', name: 'role-strategy', version:'2.9.1-SNAPSHOT', ext:'jar'
     compile group: 'org.jenkins-ci.plugins.workflow', name: 'workflow-job', version:'2.23.0', ext:'jar'
     compile group: 'org.jenkins-ci.plugins.workflow', name: 'workflow-multibranch', version:'2.14.0', ext:'jar'
     compile 'org.jenkins-ci.plugins.workflow:workflow-multibranch:2.14.0@jar'

@@ -1,6 +1,7 @@
 plugins {
     id 'groovy'
     id 'java'
+    id 'idea'
 }
 
 group 'lthil.sodifrance.fr'
@@ -8,12 +9,20 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.15'
     compile 'org.jenkins-ci.main:jenkins-core:2.121.2@jar'
     compile 'org.jenkins-ci.plugins:promoted-builds:2.28.1@jar'
     compile 'org.jenkins-ci.plugins:parameterized-trigger:2.35.2@jar'
+    compile group: 'org.jenkins-ci.plugins', name: 'matrix-auth', version:'1.7', ext:'jar'
     compile 'org.jenkins-ci.plugins:groovy:2.0@jar'
     compile 'org.jenkins-ci.plugins:script-security:1.24@jar'
     compile 'org.jenkins-ci.plugins:postbuildscript:0.17@jar'
